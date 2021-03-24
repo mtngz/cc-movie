@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment, useState } from "react";
 
-function App() {
+import Header from "./components/Header";
+import MovieList from "./components/MovieList";
+import MovieFilter from "./components/MovieFilter";
+
+function App({ movies }) {
+  const [searchTitle, setSearchTitle] = useState("");
+  const [selectLanguage, setSelectLanguage] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Header />
+      <MovieFilter
+        searchTitle={searchTitle}
+        setSearchTitle={setSearchTitle}
+        selectLanguage={selectLanguage}
+        setSelectLanguage={setSelectLanguage}
+      />
+      <MovieList
+        movies={movies}
+        searchTitle={searchTitle}
+        selectLanguage={selectLanguage}
+      />
+    </Fragment>
   );
 }
 
